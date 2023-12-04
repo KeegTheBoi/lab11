@@ -59,8 +59,7 @@ public final class LambdaFilter extends JFrame {
             "Write the count for each word", 
             s -> Arrays.stream(s.split("[^a-zA-Z\\d:]"))
             .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-            .entrySet()
-            .stream()
+            .entrySet().stream()
             .map(k -> k.getKey() + " -> " + String.valueOf(k.getValue()))
             .sorted()
             .collect(Collectors.joining("\n"))
