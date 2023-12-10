@@ -43,8 +43,7 @@ public class MultiThreadSumMatrix implements SumMatrix{
         public void run() {
             System.out.println("Working from position " + startpos + " to position " + (startpos + nelem - 1));
 
-            this.res = IntStream.range(startpos, matrix.length)
-                .filter(n -> startpos < nelem)
+            this.res = IntStream.range(startpos, nelem)
                 .mapToDouble(
                     i -> IntStream.range(0, matrix.length)
                         .mapToDouble(j -> matrix[i][j])
