@@ -42,8 +42,7 @@ public class MultiThreadSumMatrix implements SumMatrix{
         @SuppressWarnings("PMD.SystemPrintln")
         public void run() {
             System.out.println("Working from position " + startpos + " to position " + (startpos + nelem - 1));
-
-            this.res = IntStream.range(startpos, nelem)
+            this.res = IntStream.range(startpos, startpos + nelem)
                 .mapToDouble(
                     i -> IntStream.range(0, matrix.length)
                         .mapToDouble(j -> matrix[i][j])
@@ -64,7 +63,7 @@ public class MultiThreadSumMatrix implements SumMatrix{
 
     @Override
     public double sum(final double[][] matrix) {
-        final int size = (matrix.length % nthread + matrix.length) / nthread;
+        final int size = Math.ceil((double)matrix.length / nthread);
         /*
          * Build a list of workers
          */
